@@ -1,0 +1,20 @@
+{
+	"commentStamp" : "StephaneDucasse 8/15/2015 22:25",
+	"super" : "TestCase",
+	"category" : "Containers-Grid-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"grid1",
+		"grid2",
+		"grid3",
+		"grid23",
+		"grid62",
+		"grid22WithPointLocationCreatedWithRows",
+		"grid3x2FilmsCreatedWithRows",
+		"grid3x2BooksCreatedWithRows"
+	],
+	"name" : "CTGridTest",
+	"type" : "normal"
+}

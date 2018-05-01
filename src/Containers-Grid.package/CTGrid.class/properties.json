@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "StephaneDucasse 11/1/2017 12:17",
+	"super" : "Object",
+	"category" : "Containers-Grid",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"contents",
+		"rowCount",
+		"columnCount"
+	],
+	"name" : "CTGrid",
+	"type" : "normal"
+}
