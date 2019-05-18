@@ -9,7 +9,7 @@ BaselineOfContainersGrid >> baseline: spec [
 	<baseline>
 
 	spec for: #pharo do: [		
-		spec package: 'Containers-Trie'.
-		spec package: 'Containers-Trie-Tests' with: [ spec requires: #('Containers-Trie') ]
+		spec package: 'Containers-Grid'.
+		spec package: 'Containers-Grid-Tests' with: [ spec requires: #('Containers-Grid') ]
 	]
 ]
