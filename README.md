@@ -17,6 +17,14 @@ Metacello new
   load.
 ```
 
+## If you want to depend on it
+```smalltalk
+spec 
+   baseline: 'ContainersGrid'
+   with: [ spec repository: 'github://Ducasse/Containers-Grid/src' ].
+ ```
+   
+
 # Containers-Grid
 A grid data structure
 
