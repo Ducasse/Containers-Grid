@@ -14,7 +14,7 @@ Class {
 		'grid3x2FilmsCreatedWithRows',
 		'grid3x2BooksCreatedWithRows'
 	],
-	#category : 'Containers-Grid-Tests'
+	#category : #'Containers-Grid-Tests'
 }
 
 { #category : #'local setup' }
@@ -87,7 +87,6 @@ CTGridTest >> setUp [
 { #category : #'tests - instance creation' }
 CTGridTest >> testAnotherCreationWithRows [
 
-	
 	self assert: (grid3x2BooksCreatedWithRows atRow: 1 atColumn: 1) equals: 'A Time to Kill'.
 	self assert: (grid3x2BooksCreatedWithRows atRow: 2 atColumn: 2) equals: 'Stephen King'.
 	self assert: (grid3x2BooksCreatedWithRows atRow: 1 atColumn: 2) equals: 'John Grisham'.
@@ -97,14 +96,15 @@ CTGridTest >> testAnotherCreationWithRows [
 
 { #category : #'tests-access' }
 CTGridTest >> testAnyOne [
+
 	| anInt |
-	anInt := grid23 anyOne.
-	
-	self assert: (grid23 includes: anInt) equals: true
+	anInt := grid23 anyOne.	
+	self assert: (grid23 includes: anInt)
 ]
 
 { #category : #'torevisit- tests - accessing' }
 CTGridTest >> testAtAllPut [
+
 	| m |
 	m := self gridClass new: 3.
 	m do: [ :each | self assert: each equals: nil ].
@@ -114,6 +114,7 @@ CTGridTest >> testAtAllPut [
 
 { #category : #'torevisit- tests - accessing' }
 CTGridTest >> testAtAt [
+
 	self should:[grid1 atRow: 2 atColumn: 3] raise: Error.
 	self should:[grid1 atRow: 3 atColumn: 2] raise: Error.
 	self should:[grid1 atRow: 3 atColumn: 3] raise: Error.
@@ -146,10 +147,10 @@ CTGridTest >> testAtColumnPut [
 
 { #category : #'tests-access' }
 CTGridTest >> testAtRandom [
+
 	| anInt |
-	anInt := grid23 atRandom.
-	
-	self assert: (grid23 includes: anInt) equals: true
+	anInt := grid23 atRandom.	
+	self assert: (grid23 includes: anInt)
 ]
 
 { #category : #'torevisit- tests - accessing' }
@@ -162,29 +163,35 @@ CTGridTest >> testAtRow [
 
 { #category : #'tests-accessing element' }
 CTGridTest >> testAtRowAtColumn [
+
 	| anInt |
-	
 	anInt := grid23 atRow: 2 atColumn: 2.
 	self assert: anInt equals: 22 
 ]
 
 { #category : #'tests-accessing element' }
 CTGridTest >> testAtRowAtColumnPut [
+
 	grid23 atRow: 2 atColumn: 2 put: 0.
 	self assert: (grid23 atRow: 2 atColumn: 2) equals: 0
 ]
 
 { #category : #'tests-row/column operations' }
 CTGridTest >> testAtRowPut [
-		grid23 atRow: 2 put: #(0 0).
-	1 to: grid23 columnCount do: [ :x | self assert: (grid23 atRow: 2 atColumn: x) equals: 0 ]
+
+	grid23 atRow: 2 put: #(0 0).
+	1 	
+		to: grid23 columnCount 
+		do: [ :x | self 
+						assert: (grid23 atRow: 2 atColumn: x) 
+						equals: 0 ]
 ]
 
 { #category : #'tests-accessing subgrids' }
 CTGridTest >> testAtRowsColumns [
+
 	| aGrid |
-	aGrid := grid23 atRows: #(1 2) columns: #(1).
-	
+	aGrid := grid23 atRows: #(1 2) columns: #(1).	
 	self assert: aGrid columnCount equals: 1.
 	self assert: aGrid rowNumber equals: 2.
 	self assert: (aGrid atRow: 1 atColumn: 1) equals: 11.
@@ -194,7 +201,8 @@ CTGridTest >> testAtRowsColumns [
 
 { #category : #'tests-accessing subgrids' }
 CTGridTest >> testAtRowsToColumnsTo [
-		| aGrid |
+	
+	| aGrid |
 	aGrid := grid23 atRows: 1 to: 2 columns: 1 to: 1.
 	self assert: aGrid columnCount equals: 1.
 	self assert: aGrid rowNumber equals: 2.
@@ -238,6 +246,7 @@ CTGridTest >> testCollect [
 
 { #category : #'torevisit- tests - accessing' }
 CTGridTest >> testCollectCreatesANewGrid [
+
 	| m m2 |
 	m := self gridClass new: 3.
 	m atAllPut: -1.
@@ -255,17 +264,30 @@ CTGridTest >> testColumnCount [
 
 { #category : #'tests - instance creation' }
 CTGridTest >> testConcatenation [
+
 	| newGrid aGrid |
 	aGrid := self gridClass rows: 3 columns: 3.
 	aGrid atAllPut: 0.
 	newGrid := grid23 , aGrid.
-	1 to: grid23 rowNumber do: [ :y | 1 to: grid23 columnCount do: [ :x | self assert: (newGrid atRow: y atColumn: x) equals: (grid23 atRow: y atColumn: x) ] ].
+	1 
+		to: grid23 rowNumber 
+		do: [ :y | 1 
+						to: grid23 columnCount 
+						do: [ :x | self 
+										assert: (newGrid atRow: y atColumn: x) 
+										equals: (grid23 atRow: y atColumn: x) ] ].
 	1 to: aGrid rowNumber do:
-		[ :y | grid23 columnCount + 1 to: aGrid columnCount + grid23 columnCount do: [ :x | self assert: (newGrid atRow: y atColumn: x) equals: (aGrid atRow: y atColumn: (x - grid23 columnCount)) ] ]
+		[ :y | 
+		grid23 columnCount + 1 
+			to: aGrid columnCount + grid23 columnCount 
+			do: [ :x | self 
+					assert: (newGrid atRow: y atColumn: x) 
+					equals: (aGrid atRow: y atColumn: (x - grid23 columnCount)) ] ]
 ]
 
 { #category : #'tests-accessing - setters/getters' }
 CTGridTest >> testContents [
+
 	| ord |
 	ord := OrderedCollection new.
 	ord := self grid22 contents.
@@ -280,6 +302,7 @@ CTGridTest >> testContentsEncodings [
 
 { #category : #'tests - copying' }
 CTGridTest >> testCopy [
+
 	| copy |
 	grid62 atRow: 1 atColumn: 6 put: 666.
 	copy := grid62 copy.
@@ -289,6 +312,7 @@ CTGridTest >> testCopy [
 
 { #category : #'tests - instance creation' }
 CTGridTest >> testCreationGridCreationWithColumnsRows [
+
 	self assert: (grid62 atRow: 2 atColumn: 6) equals: 62.
 	self assert: (grid62 atRow: 1 atColumn: 6) equals: 61.
 	
@@ -296,6 +320,7 @@ CTGridTest >> testCreationGridCreationWithColumnsRows [
 
 { #category : #'tests - instance creation' }
 CTGridTest >> testCreationGridCreationWithRowsColumns [
+
 	self assert: (CTGrid grid6x2CreatedWithRowsColumns atRow: 2 atColumn: 6) equals: 62.
 	self assert: (CTGrid grid6x2CreatedWithRowsColumns atRow: 1 atColumn: 6) equals: 61.
 	
@@ -320,12 +345,15 @@ CTGridTest >> testCreationWithRows [
 
 { #category : #'tests - instance creation' }
 CTGridTest >> testDifferentCreationGridAreEqual [
-	self assert: (CTGrid grid6x2CreatedWithRowsColumns) equals: (CTGrid grid6x2CreatedWithRowsColumns).
+	self 
+		assert: CTGrid grid6x2CreatedWithRowsColumns
+		equals: CTGrid grid6x2CreatedWithRowsColumns
 	
 ]
 
 { #category : #'tests - iterating' }
 CTGridTest >> testDo [
+
 	| ord |
 	ord := OrderedCollection new. 
 	self grid22 do: [ :each | ord add: each ].
@@ -341,62 +369,47 @@ CTGridTest >> testDo [
 
 { #category : #'tests - instance creation' }
 CTGridTest >> testEquality [
+
 	| aGrid |
 	aGrid := self gridClass rows: 3 columns: 3.
 	aGrid atAllPut: 0.
-	
-	self assert: (grid23 = aGrid) equals: false.
-	
+	self deny: (grid23 = aGrid).
 	aGrid := grid23 postCopy.
-	
-	
-	self assert: (grid23 = aGrid) equals: true.
+	self assert: (grid23 = aGrid).
 ]
 
 { #category : #'tests - testing' }
 CTGridTest >> testExtent [
 
-	self assert: grid62 extent = (6@2).
-	self assert: grid62 columnCount = 6.
-	self assert: grid62 rowNumber = 2.
-]
-
-{ #category : #'tests-comparing' }
-CTGridTest >> testHash [
-	| ord |
-	ord := OrderedCollection new.
-	self grid22 hash.
-	ord := self grid22 contents.
-	self assert: (ord includes: 1) equals: true.
-	self assert: (ord includes: 2) equals: true.
-	self assert: (ord includes: 3) equals: true.
-	self assert: (ord includes: 4) equals: true
+	self assert: grid62 extent equals: (6@2).
+	self assert: grid62 columnCount equals: 6.
+	self assert: grid62 rowNumber equals: 2.
 ]
 
 { #category : #'tests-testing' }
 CTGridTest >> testIdentityIncludes [
+
 	| anInt |
-	anInt := grid23 atRow: 2 atColumn: 2.
-	
-	self assert: (grid23 identityIncludes: anInt) equals: true 
+	anInt := grid23 atRow: 2 atColumn: 2.	
+	self assert: (grid23 identityIncludes: anInt) 
 ]
 
 { #category : #'tests-access' }
 CTGridTest >> testIdentityIndexOf [
+
 	| anInt1 anInt2 |
 	anInt1 := grid23 atRow: 2 atColumn: 2.
-	anInt2 := 123.
 	self assert: (grid23 identityIndexOf: anInt1) equals: 2 @ 2.
-	self assert: (grid23 identityIndexOf: anInt2) equals: 0@0
+	self assert: (grid23 identityIndexOf: 123) equals: 0@0
 ]
 
 { #category : #'tests-access' }
 CTGridTest >> testIdentityIndexOfIfAbsent [
-		| anInt1 anInt2 |
+
+	| anInt1 anInt2 |
 	anInt1 := grid23 atRow: 2 atColumn: 2.
-	anInt2 := 123.
-	self assert: (grid23 identityIndexOf: anInt1 ifAbsent: [ ^ false] ) equals: 2 @ 2.
-	self assert: (grid23 identityIndexOf: anInt2 ifAbsent: [  ^ false] ) equals: false
+	self assert: (grid23 identityIndexOf: anInt1 ifAbsent: [ false] ) equals: 2 @ 2.
+	self deny: (grid23 identityIndexOf: 123 ifAbsent: [  false] )
 ]
 
 { #category : #'torevisit- tests - accessing' }
@@ -409,13 +422,13 @@ CTGridTest >> testIncludes [
 
 { #category : #'tests-testing' }
 CTGridTest >> testIncludesAll [
-	self assert: (grid23 includesAll: #(11 21 12 22 13 23)) equals: true
+	self assert: (grid23 includesAll: #(11 21 12 22 13 23))
 ]
 
 { #category : #'tests-testing' }
 CTGridTest >> testIncludesAny [
-	self assert: (grid23 includesAll: #(11 23)) equals: true.
-	self assert: (grid23 includesAll: #(1 405)) equals: false
+	self assert: (grid23 includesAll: #(11 23)).
+	self deny: (grid23 includesAll: #(1 405))
 ]
 
 { #category : #'tests-private' }
@@ -431,22 +444,23 @@ CTGridTest >> testIndexOf [
 
 { #category : #'tests-access' }
 CTGridTest >> testIndexOfIfAbsent [
-		self assert: (grid23 indexOf: 12 ifAbsent: [ ^ false ] ) equals: 2 @ 1.
-	self assert: (grid23 indexOf: 0 ifAbsent: [ ^ false ] ) equals: false
+	self assert: (grid23 indexOf: 12 ifAbsent: [ false ] ) equals: 2 @ 1.
+	self deny: (grid23 indexOf: 0 ifAbsent: [ false ] )
 ]
 
 { #category : #'tests-old-enumerating' }
 CTGridTest >> testIndicesCollect [
+
 	| newGrid |
 	newGrid := self grid22 indicesCollect: [ :x :y | x == y ].
 	"(
 1 3
 2 4
  )"
-	self assert: (newGrid atRow: 1 atColumn: 1) equals: true.
-	self assert: (newGrid atRow: 1 atColumn: 2) equals: false.
-	self assert: (newGrid atRow: 2 atColumn: 1) equals: false.
-	self assert: (newGrid atRow: 2 atColumn: 2) equals: true
+	self assert: (newGrid atRow: 1 atColumn: 1).
+	self deny: (newGrid atRow: 1 atColumn: 2).
+	self deny: (newGrid atRow: 2 atColumn: 1).
+	self assert: (newGrid atRow: 2 atColumn: 2)
 ]
 
 { #category : #'tests - iterating' }
@@ -466,27 +480,27 @@ CTGridTest >> testIndicesDo [
 
 { #category : #'tests-old-enumerating' }
 CTGridTest >> testIndicesInjectInto [
+
 	| newGrid aBool |
 	newGrid := self gridClass new: 2.
 	newGrid atAllPut: 0.
 	aBool := newGrid indicesInject: 1 into: [ :each :x :y | (newGrid atRow: x atColumn: y) == each ].
-
-	self assert: aBool equals: false 
+	self deny: aBool 
 ]
 
 { #category : #'tests-accessing - setters/getters' }
 CTGridTest >> testNumberOfColumns [
-	| grid4 |
-	
+
+	| grid4 |	
 	grid4 := self gridClass new: 2.
 	grid4 columnCount: 4.
-	
 	self assert: grid4 columnCount equals: 4
 ]
 
 { #category : #'tests-accessing - setters/getters' }
 CTGridTest >> testNumberOfRows [
-		| grid4 |
+	
+	| grid4 |
 	grid4 := self gridClass new: 2.
 	grid4 rowNUmber: 4.
 	self assert: grid4 rowNumber equals: 4
@@ -494,7 +508,8 @@ CTGridTest >> testNumberOfRows [
 
 { #category : #'tests-testing' }
 CTGridTest >> testOccurrencesOf [
-		| grid4 |
+	
+	| grid4 |
 	grid4 := self gridClass new: 2.
 	grid4 atRow: 1 atColumn: 1 put: 1.
 	grid4 atRow: 1 atColumn: 2 put: 1.
@@ -505,9 +520,9 @@ CTGridTest >> testOccurrencesOf [
 
 { #category : #'tests-copying' }
 CTGridTest >> testPostCopy [
+
 	| g23 |
-	g23 := grid23 postCopy.
-	
+	g23 := grid23 postCopy.	
 	self assert: (g23 atRow: 1 atColumn: 1) equals: 11.
 	self assert: (g23 atRow: 1 atColumn: 2) equals: 21.
 	self assert: (g23 atRow: 2 atColumn: 1) equals: 12.
@@ -519,6 +534,7 @@ CTGridTest >> testPostCopy [
 
 { #category : #'tests-printing' }
 CTGridTest >> testPrintOn [
+
 	self
 		assert: self grid22 printString equals: '(
 1 3
@@ -528,6 +544,7 @@ CTGridTest >> testPrintOn [
 
 { #category : #tests }
 CTGridTest >> testReplaceAll [
+
 	grid1 atRow: 1 atColumn: 1 put: 1.
 	grid1 atRow: 2 atColumn: 2 put: 1.
 	grid1 replaceAll: 1 with: 10.
@@ -539,13 +556,17 @@ CTGridTest >> testReplaceAll [
 
 { #category : #'tests-private' }
 CTGridTest >> testRowAndColumnForIndex [
-	self assert: (grid23 rowAndColumnForIndex: 4) equals: 2@2 
+	self 
+		assert: (grid23 rowAndColumnForIndex: 4) 
+		equals: 2@2 
 ]
 
 { #category : #'tests - accessing' }
 CTGridTest >> testRowCount [
 
-	self assert: grid62 rowCount equals: 2
+	self 
+		assert: grid62 rowCount 
+		equals: 2
 ]
 
 { #category : #'tests - iterating' }
@@ -558,11 +579,15 @@ CTGridTest >> testRows [
 
 { #category : #'tests-private' }
 CTGridTest >> testRowsColumnsContents [
-	grid23 rows: 3 columns: 3 contents: #(1 1 1 1 1 1 1 1 1).
-	
+
+	grid23 rows: 3 columns: 3 contents: #(1 1 1 1 1 1 1 1 1).	
 	self assert: grid23 columnCount equals: 3.
 	self assert: grid23 rowNumber equals: 3.
-	1 to: grid23 columnCount do: [ :x | 1 to: grid23 rowNumber do: [ :y | self assert: (grid23 atRow: y atColumn: x ) equals: 1 ] ]
+	1 
+		to: grid23 columnCount 
+		do: [ :x | 1 
+						to: grid23 rowNumber 
+						do: [ :y | self assert: (grid23 atRow: y atColumn: x ) equals: 1 ] ]
 ]
 
 { #category : #'tests-enumerating' }
@@ -594,10 +619,10 @@ CTGridTest >> testShuffled [
 	gri := self gridClass new.
 	gri := self grid22 shuffled.
 
-	self assert: (gri includes: 1) equals: true.
-	self assert: (gri  includes: 2) equals: true.
-	self assert: (gri includes: 3) equals: true.
-	self assert: (gri includes: 4) equals: true
+	self assert: (gri includes: 1).
+	self assert: (gri  includes: 2).
+	self assert: (gri includes: 3).
+	self assert: (gri includes: 4)
 ]
 
 { #category : #'tests - accessing' }
@@ -610,7 +635,9 @@ CTGridTest >> testSize [
 { #category : #'torevisit- tests - accessing' }
 CTGridTest >> testSquaredWithAllElement [
 
-	self assert: ((self gridClass new: 3 element: -1) occurrencesOf: -1) equals: 9.
+	self 
+		assert: ((self gridClass new: 3 element: -1) occurrencesOf: -1) 
+		equals: 9.
 
 ]
 
@@ -624,6 +651,7 @@ CTGridTest >> testSwap [
 
 { #category : #'tests-modifying' }
 CTGridTest >> testSwapAtPointWithPoint [
+
 	| p1 p2 |
 	p1 := 1 @ 1.
 	p2 := 2 @ 2.
@@ -644,6 +672,7 @@ CTGridTest >> testSwapAtRowAtColumnWithAtRowAtColumn [
 
 { #category : #tests }
 CTGridTest >> testSwapColumnWithColumn [
+
 	self assert: (grid23 atRow: 1 atColumn: 1) equals: 11.
 	self assert: (grid23 atRow: 1 atColumn: 2) equals: 21.
 	self assert: (grid23 atRow: 2 atColumn: 1) equals: 12.
@@ -655,10 +684,8 @@ CTGridTest >> testSwapColumnWithColumn [
 12 22
 13 23
  )"		
-	
-	
+		
 	grid23 swapColumn: 1 withColumn: 2.
-
 	self assert: (grid23 atRow: 1 atColumn: 1) equals: 21.
 	self assert: (grid23 atRow: 1 atColumn: 2) equals: 11.
 	self assert: (grid23 atRow: 2 atColumn: 1) equals: 22.
@@ -669,6 +696,7 @@ CTGridTest >> testSwapColumnWithColumn [
 
 { #category : #'tests - filling' }
 CTGridTest >> testSwapPointAPI [
+
 	grid62 swapAtPoint: (2@1) withPoint: (6@2).
 	self assert: (grid62 atRow: 1 atColumn: 2) = 62.
 	self assert: (grid62 atRow: 2 atColumn: 6) = 21.
@@ -698,6 +726,7 @@ CTGridTest >> testSwapRowWithRow [
 
 { #category : #'tests - testing' }
 CTGridTest >> testTabulate [
+
 	| m |
 	m := self gridClass rows: 3 columns: 2 tabulate: [ :row :column | column * 10 + row ].
 	self assert: (m atRow: 1 atColumn: 1) equals: 11.
@@ -710,8 +739,9 @@ CTGridTest >> testTabulate [
 
 { #category : #'tests - testing' }
 CTGridTest >> testTabulateEquals [
+
 	| m |
-	m := CTGrid rows: 3 columns: 2 tabulate: [ :row :column | column * 10 + row ].
+	m := self gridClass rows: 3 columns: 2 tabulate: [ :row :column | column * 10 + row ].
 	self assert: (m = grid23)
 
 ]
@@ -737,12 +767,9 @@ CTGridTest >> testWithColumns [
 
 ]
 
-{ #category : #'tests-old-enumerating' }
-CTGridTest >> testWithDo [
-]
-
 { #category : #'tests - iterating' }
 CTGridTest >> testWithIndicesDo [
+
 	| ord |
 	ord := OrderedCollection new. 
 	self grid22 withIndicesDo: [ :each :row :column | ord add: each + (row raisedTo: column) ].
